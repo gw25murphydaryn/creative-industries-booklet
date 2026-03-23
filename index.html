@@ -1729,6 +1729,7 @@ document.getElementById("google-login").addEventListener("click", () => {
         })
         .catch(error => {
             console.error("Login error:", error);
+          
         });
 });
 
@@ -1740,7 +1741,7 @@ auth.onAuthStateChanged(user => {
         loadProgress(user.uid);
     }
 });
-
+</script>
   <script>
 // SAVE progress to Firestore
 function saveProgress(uid, data) {
