@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Creative Industries – Homework Booklet</title>
+
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <style>
+    /* GLOBAL PAGE BACKGROUND */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 40px 0;
+      color: #222;
+      line-height: 1.5;
+      background: #e7ebe6 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2NkYGD4DwABBAEAffNkWQAAAABJRU5ErkJggg==') repeat;
+    }
+
+    /* STANDARD PAGE BLOCKS (Cover, Dashboard, Contents) */
+    .page,
+    .cover-page {
+      width: 80%;
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 32px 48px;
+      border: 4px solid #0f4d2c;
+      border-radius: 14px;
+      background: #ffffff;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      box-sizing: border-box;
+      page-break-after: always;
+      position: relative;
+    }
+
+    /* HEADINGS */
+    h1 {
+      font-size: 30px;
+      margin: 10px 0 6px 0;
+      text-align: center;
+      color: #0f4d2c;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin: 30px 0 18px 0;
+      padding: 10px 14px;
+      color: #ffffff;
+      background: linear-gradient(90deg, #0f4d2c, #1b7a4a);
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    h3 {
+      font-size: 17px;
+      margin: 18px 0 10px 0;
+      color: #0f4d2c;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 16px;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    /* LOGO */
+    .logo-wrapper {
+      text-align: center;
+      margin: 30px 0 20px 0;
+    }
+
+    .logo-wrapper img {
+      width: 40%;
+      max-width: 260px;
+      height: auto;
+    }
+
+    /* FORM FIELDS */
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 10px 0 4px 0;
+      color: #234030;
+    }
+
+    .field {
+      width: 100%;
+      font-size: 14px;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+      border-radius: 9px;
+      border: 1px solid #c8d5cd;
+      background: #fdfefc;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
+      box-sizing: border-box;
+    }
+
+    /* TASK BOXES */
+    .task-box {
+      border: 2px solid #0f4d2c;
+      background: #f3faf5;
+      border-radius: 12px;
+      padding: 20px 20px 18px 20px;
+      margin: 18px 0 26px 0;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+      page-break-inside: avoid;
+    }
+
+    /* RICH TEXT EDITOR */
+    .rte-container {
+      margin-bottom: 14px;
+      position: relative;
+    }
+
+    .rte-editor {
+      width: 100%;
+      min-height: 140px;
+      padding: 10px 12px;
+      border-radius: 9px;
+      border: 1px solid #c8d5cd;
+      background: #fdfefc;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
+      box-sizing: border-box;
+      font-size: 14px;
+      line-height: 1.5;
+      overflow-y: auto;
+    }
+
+    .rte-editor:focus {
+      outline: 2px solid #1b7a4a;
+      outline-offset: 1px;
+    }
+
+    .rte-toolbar {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -9999px;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.18s ease-out, transform 0.18s ease-out;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      padding: 6px 8px;
+      background: #ffffff;
+      border-radius: 10px;
+      border: 1px solid #c8d5cd;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+      z-index: 200;
+    }
+
+    .rte-toolbar.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .rte-button {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      padding: 4px 6px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #234030;
+    }
+
+    .rte-button:hover {
+      background: #e4f3ea;
+    }
+
+    .rte-button .material-icons {
+      font-size: 18px;
+    }
+
+    .rte-divider {
+      width: 1px;
+      height: 22px;
+      background: #d0ddd4;
+      margin: 0 4px;
+    }
+
+    .rte-select {
+      border-radius: 6px;
+      border: 1px solid #c8d5cd;
+      padding: 2px 4px;
+      font-size: 12px;
+      background: #fdfefc;
+      color: #234030;
+    }
+
+    /* BUTTONS */
+    button {
+      padding: 10px 20px;
+      background: #0f4d2c;
+      color: #ffffff;
+      border: none;
+      border-radius: 999px;
+      font-size: 14px;
+      cursor: pointer;
+      margin-top: 10px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    button:hover {
+      background: #14663a;
+      transform: translateY(-1px);
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.22);
+    }
+
+    /* NAV GRID */
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 10px 0 25px 0;
+    }
+
+    .nav-button {
+      display: block;
+      background: #0f4d2c;
+      color: #ffffff;
+      padding: 14px 16px;
+      border-radius: 12px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .nav-button:hover {
+      background: #14663a;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    /* DASHBOARD */
+    .dashboard-card {
+      border: 2px solid #0f4d2c;
+      background: #f3faf5;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 18px 0 26px 0;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .dashboard-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .dashboard-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .metric-pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #e4f3ea;
+      color: #0f4d2c;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .metric-pill .material-icons {
+      font-size: 16px;
+    }
+
+    .progress-bar-wrapper {
+      margin-top: 14px;
+    }
+
+    .progress-label-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #234030;
+      margin-bottom: 4px;
+    }
+
+    .progress-outer {
+      width: 100%;
+      height: 16px;
+      border-radius: 999px;
+      background: #dfe8e2;
+      overflow: hidden;
+    }
+
+    .progress-inner {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #0f4d2c, #1b7a4a);
+      transition: width 0.3s ease-out;
+    }
+
+    .dashboard-task-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .dashboard-task-table th,
+    .dashboard-task-table td {
+      padding: 8px 6px;
+      border-bottom: 1px solid #d0ddd4;
+      text-align: left;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+    }
+
+    .status-complete {
+      background: #d9f2e2;
+      color: #0f4d2c;
+    }
+
+    .status-progress {
+      background: #fff4d6;
+      color: #8a5a00;
+    }
+
+    .status-notstarted {
+      background: #e5e8ec;
+      color: #4a4f57;
+    }
+
+    .dashboard-unit-label {
+      font-weight: bold;
+      color: #0f4d2c;
+    }
+
+    .dashboard-go-button {
+      padding: 4px 10px;
+      font-size: 12px;
+      border-radius: 999px;
+      background: #0f4d2c;
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+    }
+
+    .dashboard-go-button:hover {
+      background: #14663a;
+    }
+
+    /* FULL‑SCREEN UNIT OVERLAY */
+    .unit-overlay {
+      position: fixed;
+      inset: 0;
+      background: #e7ebe6;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-out, opacity 0.2s ease-out;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 150;
+    }
+
+    .unit-overlay.active {
+      transform: translateX(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* SCROLLABLE INNER CONTENT */
+    .unit-inner {
+      height: 100%;
+      overflow-y: auto;
+      padding: 40px 80px 60px 80px;
+      box-sizing: border-box;
+    }
+
+    /* UNIT HEADER */
+    .unit-header {
+      padding: 14px 20px;
+      background: linear-gradient(90deg, #0f4d2c, #1b7a4a);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+      border-radius: 12px;
+      margin-bottom: 24px;
+    }
+
+    .unit-header-title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .unit-header-sub {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    .unit-header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .unit-header button {
+      background: #ffffff;
+      color: #0f4d2c;
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 13px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      margin-top: 0;
+    }
+
+    .unit-header button:hover {
+      background: #f3faf5;
+    }
+
+    /* TASK PAGE WRAPPER */
+    .task-page {
+      margin-bottom: 40px;
+    }
+
+    /* TASK HEADER BAR */
+    .task-header {
+      width: 100%;
+      padding: 14px 20px;
+      background: linear-gradient(90deg, #0f4d2c, #1b7a4a);
+      color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+      font-size: 18px;
+      font-weight: bold;
+      box-sizing: border-box;
+      margin-bottom: 16px;
+    }
+
+    /* TASK META BLOCK */
+    .task-meta {
+      border-radius: 12px;
+      border: 1px solid #c8d5cd;
+      background: #f7fbf8;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+
+    .task-meta h4 {
+      margin: 6px 0 4px 0;
+      color: #0f4d2c;
+      font-size: 15px;
+    }
+
+    .task-meta p {
+      margin: 4px 0 8px 0;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .task-meta ul {
+      margin: 6px 0 0 18px;
+      padding: 0;
+      font-size: 14px;
+    }
+
+    .task-meta li {
+      margin-bottom: 4px;
+    }
+
+    /* PRINT MODE */
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+      .page,
+      .cover-page {
+        box-shadow: none;
+        border-radius: 0;
+        margin: 0;
+        width: 100%;
+        max-width: none;
+      }
+      button {
+        display: none;
+      }
+      .rte-toolbar {
+        display: none !important;
+      }
+      .unit-overlay {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- COVER PAGE -->
+  <div class="cover-page">
+    <h1>Creative Industries – Homework Booklet</h1>
+    <div class="subtitle">National 5 – Student Version</div>
+
+    <div class="logo-wrapper">
+      <img src="Greenwood Academy School Badge.jpg" alt="Greenwood Academy School Badge">
+    </div>
+
+    <div class="task-box">
+      <label>Name</label>
+      <input type="text" class="field">
+
+      <label>Class</label>
+      <input type="text" class="field">
+
+      <label>Teacher</label>
+      <input type="text" class="field">
+
+      <label>School Year</label>
+      <input type="text" class="field">
+    </div>
+
+    <button onclick="downloadWork()">Download My Work</button>
+  </div>
+
+  <!-- STUDENT DASHBOARD -->
+  <div class="page" id="dashboard">
+    <h2>Student Dashboard</h2>
+
+    <div class="dashboard-card">
+      <div class="dashboard-header">
+        <div>
+          <h3 style="margin-top:0;">Overview</h3>
+          <p style="margin:4px 0 0 0; font-size:13px; color:#444;">
+            Track your progress through the Creative Industries homework tasks.
+          </p>
+        </div>
+      </div>
+
+      <div class="dashboard-metrics">
+        <div class="metric-pill">
+          <span class="material-icons">check_circle</span>
+          <span><span id="tasksCompleted">0</span> / <span id="tasksTotal">12</span> tasks completed</span>
+        </div>
+        <div class="metric-pill">
+          <span class="material-icons">hourglass_bottom</span>
+          <span><span id="tasksRemaining">12</span> tasks remaining</span>
+        </div>
+        <div class="metric-pill">
+          <span class="material-icons">percent</span>
+          <span><span id="percentComplete">0</span>% complete</span>
+        </div>
+        <div class="metric-pill">
+          <span class="material-icons">schedule</span>
+          <span>Estimated time spent: <span id="timeSpent">0</span> min</span>
+        </div>
+      </div>
+
+      <div class="progress-bar-wrapper">
+        <div class="progress-label-row">
+          <span>Overall progress</span>
+          <span id="progressLabel">0%</span>
+        </div>
+        <div class="progress-outer">
+          <div class="progress-inner" id="progressBar"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dashboard-card">
+      <h3 style="margin-top:0;">Task Status</h3>
+      <table class="dashboard-task-table">
+        <thead>
+          <tr>
+            <th>Unit</th>
+            <th>Task</th>
+            <th>Status</th>
+            <th>Go to task</th>
+          </tr>
+        </thead>
+        <tbody id="dashboardTaskBody">
+          <!-- Filled by JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CONTENTS PAGE -->
+  <div class="page">
+    <h2>Contents – Quick Navigation</h2>
+
+    <h3>Open a Unit</h3>
+    <div class="nav-grid">
+      <button type="button" class="nav-button" onclick="openUnit(1)">Unit 1 – Creative Industries (Tasks 1–3)</button>
+      <button type="button" class="nav-button" onclick="openUnit(2)">Unit 2 – Skills Development (Tasks 4–6)</button>
+      <button type="button" class="nav-button" onclick="openUnit(3)">Unit 3 – The Creative Process (Tasks 7–9)</button>
+      <button type="button" class="nav-button" onclick="openUnit(4)">Unit 4 – Creative Project (Tasks 10–12)</button>
+    </div>
+  </div>
+
+  <!-- GLOBAL RICH TEXT TOOLBAR -->
+  <div id="globalToolbar" class="rte-toolbar">
+    <select id="blockFormat" class="rte-select">
+      <option value="p">Normal</option>
+      <option value="h1">Heading 1</option>
+      <option value="h2">Heading 2</option>
+      <option value="h3">Heading 3</option>
+    </select>
+
+    <div class="rte-divider"></div>
+
+    <button type="button" class="rte-button" data-cmd="bold">
+      <span class="material-icons">format_bold</span>
+    </button>
+    <button type="button" class="rte-button" data-cmd="italic">
+      <span class="material-icons">format_italic</span>
+    </button>
+    <button type="button" class="rte-button" data-cmd="underline">
+      <span class="material-icons">format_underline</span>
+    </button>
+
+    <div class="rte-divider"></div>
+
+    <button type="button" class="rte-button" data-cmd="insertUnorderedList">
+      <span class="material-icons">format_list_bulleted</span>
+    </button>
+    <button type="button" class="rte-button" data-cmd="insertOrderedList">
+      <span class="material-icons">format_list_numbered</span>
+    </button>
+
+    <div class="rte-divider"></div>
+
+    <button type="button" class="rte-button" data-cmd="justifyLeft">
+      <span class="material-icons">format_align_left</span>
+    </button>
+    <button type="button" class="rte-button" data-cmd="justifyCenter">
+      <span class="material-icons">format_align_center</span>
+    </button>
+    <button type="button" class="rte-button" data-cmd="justifyRight">
+      <span class="material-icons">format_align_right</span>
+    </button>
+
+    <div class="rte-divider"></div>
+
+    <button type="button" class="rte-button" data-cmd="outdent">
+      <span class="material-icons">format_indent_decrease</span>
+    </button>
+    <button type="button" class="rte-button" data-cmd="indent">
+      <span class="material-icons">format_indent_increase</span>
+    </button>
+
+    <div class="rte-divider"></div>
+
+    <button type="button" class="rte-button" data-cmd="removeFormat">
+      <span class="material-icons">format_clear</span>
+    </button>
+
+    <div class="rte-divider"></div>
+
+    <button type="button" class="rte-button" data-cmd="undo">
+      <span class="material-icons">undo</span>
+    </button>
+    <button type="button" class="rte-button" data-cmd="redo">
+      <span class="material-icons">redo</span>
+    </button>
+  </div>
+
+  <!-- UNIT 1 OVERLAY -->
+  <div class="unit-overlay" id="unit1Overlay">
+    <div class="unit-inner">
+
+      <div class="unit-header">
+        <div class="unit-header-left">
+          <span class="unit-header-title">Unit 1 – Creative Industries: An Introduction</span>
+          <span class="unit-header-sub">Tasks 1–3</span>
+        </div>
+        <button type="button" onclick="closeUnit(1)">
+          <span class="material-icons" style="vertical-align:middle;font-size:18px;margin-right:4px;">arrow_back</span>
+          Back to Contents
+        </button>
+      </div>
+
+      <!-- TASK 1 -->
+      <div class="task-page" data-task="1" data-unit="1">
+        <div class="task-header">Task 1 – Creative Industries Sectors</div>
+
+        <div class="task-meta">
+          <h4>Task Description – What, Why, How</h4>
+          <p><strong>What:</strong> You will explore different sectors within the Creative Industries and identify what they produce, who works in them, and how they contribute to the wider creative economy.</p>
+          <p><strong>Why:</strong> Understanding the sectors helps you see the scale of the industry, the variety of roles available, and how creative work connects to real‑world audiences and businesses.</p>
+          <p><strong>How:</strong> Choose two sectors. For each one, describe what they make, who works there, and why the sector matters. Use examples from real companies or job roles to support your answers.</p>
+
+          <h4>Learning Intention</h4>
+          <p>I am learning to identify and describe key sectors within the Creative Industries.</p>
+
+          <h4>Success Criteria</h4>
+          <ul>
+            <li>I can name different Creative Industries sectors.</li>
+            <li>I can describe the products and services they provide.</li>
+            <li>I can give examples of jobs or companies in each sector.</li>
+            <li>I can explain why each sector is important.</li>
+          </ul>
+        </div>
+
+        <div class="task-box">
+          <label>Sector name</label>
+          <input type="text" class="field">
+
+          <label>Products / services</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+
+          <label>Example job / company</label>
+          <input type="text" class="field">
+
+          <label>Why this sector is important</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+        </div>
+
+        <div class="task-box">
+          <label>Sector name</label>
+          <input type="text" class="field">
+
+          <label>Products / services</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+
+          <label>Example job / company</label>
+          <input type="text" class="field">
+
+          <label>Why this sector is important</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TASK 2 -->
+      <div class="task-page" data-task="2" data-unit="1">
+        <div class="task-header">Task 2 – Legal &amp; Safety Report</div>
+
+        <div class="task-meta">
+          <h4>Task Description – What, Why, How</h4>
+          <p><strong>What:</strong> You will research the legal, ethical, and safety requirements that affect creative work in your chosen sector.</p>
+          <p><strong>Why:</strong> Laws and safety guidelines protect creative workers, clients, and audiences. Knowing them helps you work professionally and responsibly.</p>
+          <p><strong>How:</strong> Choose one Creative Industries sector. Research relevant laws, safety rules, and supporting organisations. Explain what they are and why they matter for people working in that sector.</p>
+
+          <h4>Learning Intention</h4>
+          <p>I am learning to understand the laws and safety guidelines that protect creative workers and audiences.</p>
+
+          <h4>Success Criteria</h4>
+          <ul>
+            <li>I can identify relevant laws and regulations.</li>
+            <li>I can explain why these laws matter.</li>
+            <li>I can describe organisations that support creative workers.</li>
+            <li>I can explain how legal and safety issues affect creative work.</li>
+          </ul>
+        </div>
+
+        <div class="task-box">
+          <label>Sector chosen</label>
+          <input type="text" class="field">
+
+          <label>Legal parameters</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+
+          <label>Health &amp; safety laws</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+
+          <label>Supporting organisations</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+
+          <label>Why these are important</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TASK 3 -->
+      <div class="task-page" data-task="3" data-unit="1">
+        <div class="task-header">Task 3 – Employment Opportunities</div>
+
+        <div class="task-meta">
+          <h4>Task Description – What, Why, How</h4>
+          <p><strong>What:</strong> You will investigate different types of employment in the Creative Industries and compare the benefits and challenges of each.</p>
+          <p><strong>Why:</strong> Understanding employment types helps you plan your future and recognise how creative workers build careers.</p>
+          <p><strong>How:</strong> Choose at least two job roles. For each one, describe the role, the type of employment, and any challenges (especially for freelancers). Use real examples where possible.</p>
+
+          <h4>Learning Intention</h4>
+          <p>I am learning to understand different employment types and what they mean for creative workers.</p>
+
+          <h4>Success Criteria</h4>
+          <ul>
+            <li>I can describe different job roles.</li>
+            <li>I can identify employment types (e.g., freelance, full‑time).</li>
+            <li>I can explain the challenges freelancers may face.</li>
+            <li>I can describe the responsibilities of each role.</li>
+          </ul>
+        </div>
+
+        <div class="task-box">
+          <label>Job role</label>
+          <input type="text" class="field">
+
+          <label>Employment type</label>
+          <input type="text" class="field">
+
+          <label>Short description</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+
+          <label>Freelancer challenge</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+        </div>
+
+        <div class="task-box">
+          <label>Job role</label>
+          <input type="text" class="field">
+
+          <label>Employment type</label>
+          <input type="text" class="field">
+
+          <label>Short description</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+
+          <label>Freelancer challenge</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- UNIT 2 OVERLAY -->
+  <div class="unit-overlay" id="unit2Overlay">
+    <div class="unit-inner">
+
+      <div class="unit-header">
+        <div class="unit-header-left">
+          <span class="unit-header-title">Unit 2 – Skills Development</span>
+          <span class="unit-header-sub">Tasks 4–6</span>
+        </div>
+        <button type="button" onclick="closeUnit(2)">
+          <span class="material-icons" style="vertical-align:middle;font-size:18px;margin-right:4px;">arrow_back</span>
+          Back to Contents
+        </button>
+      </div>
+
+      <!-- TASK 4 -->
+      <div class="task-page" data-task="4" data-unit="2">
+        <div class="task-header">Task 4 – Practical Skills Audit</div>
+
+        <div class="task-meta">
+          <h4>Task Description – What, Why, How</h4>
+          <p><strong>What:</strong> You will assess your current creative skills and identify your strengths and areas for improvement.</p>
+          <p><strong>Why:</strong> Being honest about your skills helps you plan your next steps and prepare for real creative work.</p>
+          <p><strong>How:</strong> Choose a creative job role. List key skills needed for that role, rate your current level, and explain why you gave yourself that rating.</p>
+
+          <h4>Learning Intention</h4>
+          <p>I am learning to evaluate my own creative skills honestly and accurately.</p>
+
+          <h4>Success Criteria</h4>
+          <ul>
+            <li>I can identify skills needed for a chosen job role.</li>
+            <li>I can rate my current level of experience.</li>
+            <li>I can explain why I rated myself this way.</li>
+            <li>I can identify areas I want to improve.</li>
+          </ul>
+        </div>
+
+        <div class="task-box">
+          <label>Job role chosen</label>
+          <input type="text" class="field">
+
+          <label>Skill 1</label>
+          <input type="text" class="field">
+
+          <label>Experience level</label>
+          <input type="text" class="field">
+
+          <label>Skill 2</label>
+          <input type="text" class="field">
+
+          <label>Experience level</label>
+          <input type="text" class="field">
+
+          <label>Skill 3</label>
+          <input type="text" class="field">
+
+          <label>Experience level</label>
+          <input type="text" class="field">
+
+          <label>Explanation of your ratings</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TASK 5 -->
+      <div class="task-page" data-task="5" data-unit="2">
+        <div class="task-header">Task 5 – Target Setting</div>
+
+        <div class="task-meta">
+          <h4>Task Description – What, Why, How</h4>
+          <p><strong>What:</strong> You will set realistic, achievable targets to help you develop your creative skills.</p>
+          <p><strong>Why:</strong> Clear targets give you direction and help you measure your progress over time.</p>
+          <p><strong>How:</strong> Based on your skills audit, write at least three specific targets. For each one, explain why it matters and how you will know you have achieved it.</p>
+
+          <h4>Learning Intention</h4>
+          <p>I am learning to set clear and achievable targets for my own development.</p>
+
+          <h4>Success Criteria</h4>
+          <ul>
+            <li>I can write clear, specific targets.</li>
+            <li>I can explain why each target is important.</li>
+            <li>I can link my targets to my chosen job role.</li>
+            <li>I can identify how I will measure my progress.</li>
+          </ul>
+        </div>
+
+        <div class="task-box">
+          <label>Target 1</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+
+          <label>Target 2</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+
+          <label>Target 3</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TASK 6 -->
+      <div class="task-page" data-task="6" data-unit="2">
+        <div class="task-header">Task 6 – Approaches to Skill Development</div>
+
+        <div class="task-meta">
+          <h4>Task Description – What, Why, How</h4>
+          <p><strong>What:</strong> You will plan practical ways to develop your creative skills, including where, when, and how you will practise.</p>
+          <p><strong>Why:</strong> Planning realistic activities helps you turn your targets into real progress.</p>
+          <p><strong>How:</strong> Choose at least two methods for developing your skills (e.g., practice tasks, online tutorials, workshops). For each method, describe what you will do, where, when, and what support or equipment you need.</p>
+
+          <h4>Learning Intention</h4>
+          <p>I am learning to plan realistic activities that will help me improve my creative skills.</p>
+
+          <h4>Success Criteria</h4>
+          <ul>
+            <li>I can describe methods for developing my skills.</li>
+            <li>I can identify where and when I will practise.</li>
+            <li>I can list the equipment and support I need.</li>
+            <li>I can explain why these methods will help me improve.</li>
+          </ul>
+        </div>
+
+        <div class="task-box">
+          <label>Method 1 – What I will do</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+
+          <label>Where</label>
+          <input type="text" class="field">
+
+          <label>Equipment needed</label>
+          <input type="text" class="field">
+
+          <label>Support needed</label>
+          <input type="text" class="field">
+        </div>
+
+        <div class="task-box">
+          <label>Method 2 – What I will do</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+
+          <label>Where</label>
+          <input type="text" class="field">
+
+          <label>Equipment needed</label>
+          <input type="text" class="field">
+
+          <label>Support needed</label>
+          <input type="text" class="field">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- UNIT 3 OVERLAY -->
+  <div class="unit-overlay" id="unit3Overlay">
+    <div class="unit-inner">
+
+      <div class="unit-header">
+        <div class="unit-header-left">
+          <span class="unit-header-title">Unit 3 – The Creative Process</span>
+          <span class="unit-header-sub">Tasks 7–9</span>
+        </div>
+        <button type="button" onclick="closeUnit(3)">
+          <span class="material-icons" style="vertical-align:middle;font-size:18px;margin-right:4px;">arrow_back</span>
+          Back to Contents
+        </button>
+      </div>
+
+      <!-- TASK 7 -->
+      <div class="task-page" data-task="7" data-unit="3">
+        <div class="task-header">Task 7 – Personal Response to a Brief</div>
+
+        <div class="task-meta">
+          <h4>Task Description – What, Why, How</h4>
+          <p><strong>What:</strong> You will respond to a creative brief by developing your own idea and explaining how it meets the needs of the client and audience.</p>
+          <p><strong>Why:</strong> Being able to respond to a brief is a key skill in the Creative Industries. It shows you can work to requirements while still being creative.</p>
+          <p><strong>How:</strong> Read the brief carefully. Describe your idea, who it is for, and how it meets the brief. Consider costs, timescales, safety issues, and the skills and resources you will need.</p>
+
+          <h4>Learning Intention</h4>
+          <p>I am learning to develop and justify a creative idea based on a brief.</p>
+
+          <h4>Success Criteria</h4>
+          <ul>
+            <li>I can describe my idea clearly.</li>
+            <li>I can identify the target audience.</li>
+            <li>I can explain how my idea meets the brief.</li>
+            <li>I can consider costs, timescales, and safety issues.</li>
+            <li>I can identify the skills and resources needed.</li>
+          </ul>
+        </div>
+
+        <div class="task-box">
+          <label>My idea</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+
+          <label>Target audience</label>
+          <input type="text" class="field">
+
+          <label>Costs and timescale</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+
+          <label>Health &amp; safety issues</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+
+          <label>Skills and resources needed</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+
+          <label>How my idea meets the brief</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TASK 8 -->
+      <div class="task-page" data-task="8" data-unit="3">
+        <div class="task-header">Task 8 – Feedback Reflection</div>
+
+        <div class="task-meta">
+          <h4>Task Description – What, Why, How</h4>
+          <p><strong>What:</strong> You will reflect on feedback you have received and explain how it helped you improve your work.</p>
+          <p><strong>Why:</strong> Feedback is an important part of the creative process. Learning to use it well helps you develop stronger ideas and outcomes.</p>
+          <p><strong>How:</strong> Choose a piece of feedback you received on your work. Describe what the feedback was, how you responded, and what changes you made or could make as a result.</p>
+
+          <h4>Learning Intention</h4>
+          <p>I am learning to use feedback to improve my creative ideas and outcomes.</p>
+
+          <h4>Success Criteria</h4>
+          <ul>
+            <li>I can describe the feedback I received.</li>
+            <li>I can explain how I responded to it.</li>
+            <li>I can identify improvements I made or could make.</li>
+            <li>I can reflect on how feedback supports creative development.</li>
+          </ul>
+        </div>
+
+        <div class="task-box">
+          <label>Feedback I received</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+
+          <label>How I responded</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+
+          <label>Improvements I made / could make</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TASK 9 -->
+      <div class="task-page" data-task="9" data-unit="3">
+        <div class="task-header">Task 9 – Team Roles &amp; Tasks</div>
+
+        <div class="task-meta">
+          <h4>Task Description – What, Why, How</h4>
+          <p><strong>What:</strong> You will explore how creative teams work together and plan how tasks can be shared fairly.</p>
+          <p><strong>Why:</strong> Most creative projects involve teams. Understanding roles and responsibilities helps you work effectively with others.</p>
+          <p><strong>How:</strong> List your team members and their roles. Describe the key tasks in your project and explain who will do what, and why this is a fair and effective way to share the work.</p>
+
+          <h4>Learning Intention</h4>
+          <p>I am learning to understand team roles and how responsibilities can be shared.</p>
+
+          <h4>Success Criteria</h4>
+          <ul>
+            <li>I can identify team members and their roles.</li>
+            <li>I can describe key tasks in a project.</li>
+            <li>I can explain how tasks can be shared fairly.</li>
+            <li>I can describe how teamwork supports creative projects.</li>
+          </ul>
+        </div>
+
+        <div class="task-box">
+          <label>Team member 1</label>
+          <input type="text" class="field">
+
+          <label>Team member 2</label>
+          <input type="text" class="field">
+
+          <label>Team member 3</label>
+          <input type="text" class="field">
+
+          <label>Team member 4</label>
+          <input type="text" class="field">
+
+          <label>Key tasks and roles</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- UNIT 4 OVERLAY -->
+  <div class="unit-overlay" id="unit4Overlay">
+    <div class="unit-inner">
+
+      <div class="unit-header">
+        <div class="unit-header-left">
+          <span class="unit-header-title">Unit 4 – Creative Project</span>
+          <span class="unit-header-sub">Tasks 10–12</span>
+        </div>
+        <button type="button" onclick="closeUnit(4)">
+          <span class="material-icons" style="vertical-align:middle;font-size:18px;margin-right:4px;">arrow_back</span>
+          Back to Contents
+        </button>
+      </div>
+
+      <!-- TASK 10 -->
+      <div class="task-page" data-task="10" data-unit="4">
+        <div class="task-header">Task 10 – Project Planning Sheet</div>
+
+        <div class="task-meta">
+          <h4>Task Description – What, Why, How</h4>
+          <p><strong>What:</strong> You will plan the key tasks, resources, and timescales needed to complete your creative project.</p>
+          <p><strong>Why:</strong> Good planning helps you stay organised, meet deadlines, and produce a stronger final outcome.</p>
+          <p><strong>How:</strong> Give your project a clear title. List the main tasks, the resources you need, your role, and realistic timescales and review dates.</p>
+
+          <h4>Learning Intention</h4>
+          <p>I am learning to plan a creative project effectively.</p>
+
+          <h4>Success Criteria</h4>
+          <ul>
+            <li>I can identify key tasks.</li>
+            <li>I can list the resources I need.</li>
+            <li>I can describe my role in the project.</li>
+            <li>I can plan realistic timescales and review points.</li>
+          </ul>
+        </div>
+
+        <div class="task-box">
+          <label>Project title</label>
+          <input type="text" class="field">
+
+          <label>Key tasks</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+
+          <label>Resources needed</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+
+          <label>Your role in the project</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+
+          <label>Timescales and review dates</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TASK 11 -->
+      <div class="task-page" data-task="11" data-unit="4">
+        <div class="task-header">Task 11 – Mid‑Project Review</div>
+
+        <div class="task-meta">
+          <h4>Task Description – What, Why, How</h4>
+          <p><strong>What:</strong> You will review your progress so far and identify what is going well and what needs to change.</p>
+          <p><strong>Why:</strong> Reviewing your progress helps you spot problems early and make realistic adjustments.</p>
+          <p><strong>How:</strong> Reflect on your project so far. Describe what is going well, what problems or delays you have faced, and what changes you will make next.</p>
+
+          <h4>Learning Intention</h4>
+          <p>I am learning to evaluate my progress and make realistic adjustments.</p>
+
+          <h4>Success Criteria</h4>
+          <ul>
+            <li>I can describe what is going well.</li>
+            <li>I can identify problems or delays.</li>
+            <li>I can explain what changes I will make.</li>
+            <li>I can reflect on how these changes will help.</li>
+          </ul>
+        </div>
+
+        <div class="task-box">
+          <label>What is going well</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+
+          <label>Problems or delays</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+
+          <label>Changes I will make</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TASK 12 -->
+      <div class="task-page" data-task="12" data-unit="4">
+        <div class="task-header">Task 12 – Final Evaluation</div>
+
+        <div class="task-meta">
+          <h4>Task Description – What, Why, How</h4>
+          <p><strong>What:</strong> You will evaluate your final project outcome and reflect on your skills and performance.</p>
+          <p><strong>Why:</strong> Evaluating your work helps you recognise your achievements and identify what to improve next time.</p>
+          <p><strong>How:</strong> Reflect on your final product and your role in the project. Describe what went well, what could be improved, how you worked in the team or on your own, and what skills you developed.</p>
+
+          <h4>Learning Intention</h4>
+          <p>I am learning to evaluate my creative work and reflect on my development.</p>
+
+          <h4>Success Criteria</h4>
+          <ul>
+            <li>I can describe what went well.</li>
+            <li>I can identify what could be improved.</li>
+            <li>I can reflect on how well I worked independently or in a team.</li>
+            <li>I can identify the skills I developed.</li>
+          </ul>
+        </div>
+
+        <div class="task-box">
+          <label>What went well in the final product</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+
+          <label>What could be improved</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+
+          <label>How well I worked in the team / on my own</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+
+          <label>Skills I developed during this project</label>
+          <div class="rte-container">
+            <div class="rte-editor" contenteditable="true"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SCRIPT: AUTO-SAVE, DASHBOARD, RTE, OVERLAYS -->
+  <script>
+    // --- OVERLAY OPEN/CLOSE ---
+    function openUnit(unit) {
+      const overlay = document.getElementById("unit" + unit + "Overlay");
+      if (overlay) {
+        overlay.classList.add("active");
+      }
+    }
+
+    function closeUnit(unit) {
+      const overlay = document.getElementById("unit" + unit + "Overlay");
+      if (overlay) {
+        overlay.classList.remove("active");
+      }
+    }
+
+    // --- AUTO-SAVE FOR INPUTS & RTE EDITORS ---
+    const inputFields = Array.from(document.querySelectorAll("input.field"));
+    const rteEditors = Array.from(document.querySelectorAll(".rte-editor"));
+
+    inputFields.forEach((field, index) => {
+      const key = "ci_homework_input_" + index;
+      const savedValue = localStorage.getItem(key);
+      if (savedValue !== null) {
+        field.value = savedValue;
+      }
+      field.addEventListener("input", () => {
+        localStorage.setItem(key, field.value);
+        markActivity();
+        updateDashboard();
+      });
+    });
+
+    rteEditors.forEach((editor, index) => {
+      const key = "ci_homework_rte_" + index;
+      const savedValue = localStorage.getItem(key);
+      if (savedValue !== null) {
+        editor.innerHTML = savedValue;
+      }
+      editor.addEventListener("input", () => {
+        localStorage.setItem(key, editor.innerHTML);
+        markActivity();
+        updateDashboard();
+      });
+    });
+
+    // --- RICH TEXT TOOLBAR LOGIC ---
+    const toolbar = document.getElementById("globalToolbar");
+    const blockFormatSelect = document.getElementById("blockFormat");
+    let activeEditor = null;
+    let toolbarHideTimeout = null;
+
+    function showToolbarForEditor(editor) {
+      activeEditor = editor;
+      const container = editor.parentElement;
+      const rect = container.getBoundingClientRect();
+
+      toolbar.style.top = (rect.top + window.scrollY - toolbar.offsetHeight - 8) + "px";
+      toolbar.style.left = (rect.left + window.scrollX) + "px";
+      toolbar.style.width = rect.width + "px";
+
+      toolbar.classList.add("visible");
+    }
+
+    function hideToolbar() {
+      toolbar.classList.remove("visible");
+      activeEditor = null;
+    }
+
+    rteEditors.forEach(editor => {
+      editor.addEventListener("focus", () => {
+        showToolbarForEditor(editor);
+      });
+
+      editor.addEventListener("blur", () => {
+        toolbarHideTimeout = setTimeout(() => {
+          hideToolbar();
+        }, 150);
+      });
+    });
+
+    toolbar.addEventListener("mousedown", (e) => {
+      e.preventDefault();
+      if (toolbarHideTimeout) {
+        clearTimeout(toolbarHideTimeout);
+      }
+      if (activeEditor) {
+        activeEditor.focus();
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!toolbar.contains(e.target) && !e.target.classList.contains("rte-editor")) {
+        hideToolbar();
+      }
+    });
+
+    toolbar.querySelectorAll(".rte-button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (!activeEditor) return;
+        const cmd = btn.getAttribute("data-cmd");
+        activeEditor.focus();
+        document.execCommand(cmd, false, null);
+      });
+    });
+
+    blockFormatSelect.addEventListener("change", () => {
+      if (!activeEditor) return;
+      const value = blockFormatSelect.value;
+      activeEditor.focus();
+      if (value === "p") {
+        document.execCommand("formatBlock", false, "p");
+      } else {
+        document.execCommand("formatBlock", false, value);
+      }
+    });
+
+    // --- DASHBOARD & ANALYTICS ---
+    const tasksTotal = 12;
+    const tasksTotalSpan = document.getElementById("tasksTotal");
+    const tasksCompletedSpan = document.getElementById("tasksCompleted");
+    const tasksRemainingSpan = document.getElementById("tasksRemaining");
+    const percentCompleteSpan = document.getElementById("percentComplete");
+    const timeSpentSpan = document.getElementById("timeSpent");
+    const progressBar = document.getElementById("progressBar");
+    const progressLabel = document.getElementById("progressLabel");
+    const dashboardTaskBody = document.getElementById("dashboardTaskBody");
+
+    tasksTotalSpan.textContent = tasksTotal;
+
+    const taskMeta = [
+      { id: 1, unit: 1, title: "Task 1 – Creative Industries Sectors" },
+      { id: 2, unit: 1, title: "Task 2 – Legal & Safety Report" },
+      { id: 3, unit: 1, title: "Task 3 – Employment Opportunities" },
+      { id: 4, unit: 2, title: "Task 4 – Practical Skills Audit" },
+      { id: 5, unit: 2, title: "Task 5 – Target Setting" },
+      { id: 6, unit: 2, title: "Task 6 – Approaches to Skill Development" },
+      { id: 7, unit: 3, title: "Task 7 – Personal Response to a Brief" },
+      { id: 8, unit: 3, title: "Task 8 – Feedback Reflection" },
+      { id: 9, unit: 3, title: "Task 9 – Team Roles & Tasks" },
+      { id: 10, unit: 4, title: "Task 10 – Project Planning Sheet" },
+      { id: 11, unit: 4, title: "Task 11 – Mid‑Project Review" },
+      { id: 12, unit: 4, title: "Task 12 – Final Evaluation" }
+    ];
+
+    function hasMeaningfulContent(element) {
+      if (!element) return false;
+      if (element.tagName === "INPUT") {
+        return element.value.trim().length > 0;
+      }
+      if (element.classList.contains("rte-editor")) {
+        const text = element.innerText.replace(/\s+/g, "");
+        return text.length > 0;
+      }
+      return false;
+    }
+
+    function getTaskStatus(taskId) {
+      const page = document.querySelector('.task-page[data-task="' + taskId + '"]');
+      if (!page) return "notstarted";
+
+      const inputs = Array.from(page.querySelectorAll("input.field"));
+      const editors = Array.from(page.querySelectorAll(".rte-editor"));
+
+      let filledCount = 0;
+      let totalCount = inputs.length + editors.length;
+
+      inputs.forEach(el => {
+        if (hasMeaningfulContent(el)) filledCount++;
+      });
+      editors.forEach(el => {
+        if (hasMeaningfulContent(el)) filledCount++;
+      });
+
+      if (filledCount === 0) return "notstarted";
+      if (filledCount === totalCount) return "complete";
+      return "progress";
+    }
+
+    function updateDashboardTable() {
+      dashboardTaskBody.innerHTML = "";
+      taskMeta.forEach(task => {
+        const status = getTaskStatus(task.id);
+        let statusClass = "status-notstarted";
+        let statusLabel = "Not started";
+        let statusIcon = "radio_button_unchecked";
+
+        if (status === "complete") {
+          statusClass = "status-complete";
+          statusLabel = "Complete";
+          statusIcon = "check_circle";
+        } else if (status === "progress") {
+          statusClass = "status-progress";
+          statusLabel = "In progress";
+          statusIcon = "adjust";
+        }
+
+        const tr = document.createElement("tr");
+
+        const unitTd = document.createElement("td");
+        unitTd.innerHTML = '<span class="dashboard-unit-label">Unit ' + task.unit + '</span>';
+        tr.appendChild(unitTd);
+
+        const titleTd = document.createElement("td");
+        titleTd.textContent = task.title;
+        tr.appendChild(titleTd);
+
+        const statusTd = document.createElement("td");
+        statusTd.innerHTML =
+          '<span class="status-pill ' + statusClass + '">' +
+          '<span class="material-icons">' + statusIcon + '</span>' +
+          '<span>' + statusLabel + '</span>' +
+          '</span>';
+        tr.appendChild(statusTd);
+
+        const goTd = document.createElement("td");
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "dashboard-go-button";
+        btn.textContent = "Go";
+        btn.addEventListener("click", () => {
+          const unit = task.unit;
+          openUnit(unit);
+          setTimeout(() => {
+            const page = document.querySelector('.task-page[data-task="' + task.id + '"]');
+            if (page) {
+              page.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }, 250);
+        });
+        goTd.appendChild(btn);
+        tr.appendChild(goTd);
+
+        dashboardTaskBody.appendChild(tr);
+      });
+    }
+
+    function updateDashboard() {
+      let completed = 0;
+      taskMeta.forEach(task => {
+        if (getTaskStatus(task.id) === "complete") completed++;
+      });
+
+      const remaining = tasksTotal - completed;
+      const percent = Math.round((completed / tasksTotal) * 100);
+
+      tasksCompletedSpan.textContent = completed;
+      tasksRemainingSpan.textContent = remaining;
+      percentCompleteSpan.textContent = percent;
+      progressLabel.textContent = percent + "%";
+      progressBar.style.width = percent + "%";
+
+      updateDashboardTable();
+    }
+
+    // --- TIME SPENT ESTIMATE ---
+    let lastActivityTime = null;
+    let activityTimer = null;
+
+    function loadTimeSpent() {
+      const stored = localStorage.getItem("ci_homework_time_spent_minutes");
+      const minutes = stored ? parseInt(stored, 10) || 0 : 0;
+      timeSpentSpan.textContent = minutes;
+      return minutes;
+    }
+
+    function saveTimeSpent(minutes) {
+      localStorage.setItem("ci_homework_time_spent_minutes", String(minutes));
+      timeSpentSpan.textContent = minutes;
+    }
+
+    function markActivity() {
+      const now = Date.now();
+      if (!lastActivityTime) {
+        lastActivityTime = now;
+      }
+      if (!activityTimer) {
+        activityTimer = setInterval(() => {
+          if (!lastActivityTime) return;
+          const diffMs = Date.now() - lastActivityTime;
+          if (diffMs > 60000) {
+            clearInterval(activityTimer);
+            activityTimer = null;
+            lastActivityTime = null;
+            return;
+          }
+          const currentMinutes = loadTimeSpent();
+          saveTimeSpent(currentMinutes + 1);
+          lastActivityTime = Date.now();
+        }, 60000);
+      }
+      lastActivityTime = now;
+    }
+
+    loadTimeSpent();
+    updateDashboard();
+
+    // --- DOWNLOAD ALL ANSWERS AS TEXT FILE ---
+    function stripHtml(html) {
+      const div = document.createElement("div");
+      div.innerHTML = html;
+      return div.innerText || div.textContent || "";
+    }
+
+    function downloadWork() {
+      let output = "Creative Industries Homework Booklet\n\n";
+
+      const labels = document.querySelectorAll("label");
+
+      labels.forEach(label => {
+        output += label.innerText + ":\n";
+
+        let next = label.nextElementSibling;
+        let captured = false;
+        while (next && !captured) {
+          if (next.tagName === "INPUT" && next.classList.contains("field")) {
+            output += (next.value || "[No answer]") + "\n\n";
+            captured = true;
+          } else if (next.classList.contains("rte-container")) {
+            const ed = next.querySelector(".rte-editor");
+            const text = stripHtml(ed.innerHTML).trim();
+            output += (text || "[No answer]") + "\n\n";
+            captured = true;
+          } else {
+            next = next.nextElementSibling;
+          }
+        }
+        if (!captured) {
+          output += "[No answer]\n\n";
+        }
+      });
+
+      const blob = new Blob([output], { type: "text/plain" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "creative_industries_homework.txt";
+      link.click();
+    }
+
+    window.downloadWork = downloadWork;
+    window.openUnit = openUnit;
+    window.closeUnit = closeUnit;
+  </script>
+
+</body>
+</html>
