@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
+
+<!-- Your Firebase config -->
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyA3Wdt5ZCO6DJ4F_PNpc7Je9tgZbYNZfBM",
+    authDomain: "creative-industries-booklet.firebaseapp.com",
+    projectId: "creative-industries-booklet",
+    storageBucket: "creative-industries-booklet.firebasestorage.app",
+    messagingSenderId: "40702102395",
+    appId: "1:40702102395:web:0995733b96d7d93d820bde",
+    measurementId: "G-EHCC980B3E"
+  };
+
+  // Initialise Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
   <meta charset="UTF-8" />
   <title>Creative Industries – Homework Booklet</title>
 
@@ -513,7 +534,16 @@
 </head>
 
 <body>
+<!-- LOGIN SCREEN (shown first) -->
+    <div id="login-screen" style="text-align:center; padding:40px;">
+        <h2>Sign in to continue</h2>
+        <button id="google-login" style="padding:10px 20px; font-size:1.1rem;">
+            Sign in with Google
+        </button>
+    </div>
 
+    <!-- BOOKLET CONTENT (hidden until login) -->
+    <div id="booklet" style="display:none;">
   <!-- COVER PAGE -->
   <div class="cover-page">
     <h1>Creative Industries – Homework Booklet</h1>
@@ -1678,6 +1708,55 @@
     window.downloadWork = downloadWork;
     window.openUnit = openUnit;
     window.closeUnit = closeUnit;
+
+  <script>
+// Google login
+document.getElementById("google-login").addEventListener("click", () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider)
+        .then(result => {
+            // Hide login screen
+            document.getElementById("login-screen").style.display = "none";
+
+            // Show booklet
+            document.getElementById("booklet").style.display = "block";
+
+            // Load saved progress
+            loadProgress(result.user.uid);
+        })
+        .catch(error => {
+            console.error("Login error:", error);
+        });
+});
+
+// Auto-login if already signed in
+auth.onAuthStateChanged(user => {
+    if (user) {
+        document.getElementById("login-screen").style.display = "none";
+        document.getElementById("booklet").style.display = "block";
+        loadProgress(user.uid);
+    }
+});
+
+  <script>
+// SAVE progress to Firestore
+function saveProgress(uid, data) {
+    db.collection("users").doc(uid).set({
+        progress: data
+    }, { merge: true });
+}
+
+// LOAD progress from Firestore
+function loadProgress(uid) {
+    db.collection("users").doc(uid).get().then(doc => {
+        if (doc.exists) {
+            const data = doc.data().progress;
+            if (data) {
+                // TODO: Replace this with your real load logic
+                console.log("Loaded progress:", data);
+            }
+        }
+    
   </script>
 
 </body>
